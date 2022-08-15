@@ -56,7 +56,7 @@ export default function ResetPassword(props) {
         <>
             <div className={"d-flex h-100 justify-content-center "}>
                 <div style={{ width: "30%", maxWidth: 400 }}>
-                    <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }} onClick={() => { props.updateSelectedPage(pages.LOGIN) }}>
+                    <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }} onClick={() => { props.updateSelectedPage(pages.HOME) }}>
                         <img src={imgLogo} height={50} width={50} />
                     </div>
                     <div style={{ display: "flex", alignItems: "center", marginLeft: 10 }}>
@@ -65,6 +65,7 @@ export default function ResetPassword(props) {
                     <div style={{ marginBottom: 20 }}>
                         <FormControl variant="outlined" fullWidth >
                             <TextField label="Enter New Password" variant="standard"
+                                type={values.showPassword ? 'text' : 'password'}
                                 onChange={handleChange('password')}
                                 error={errorMessage != ""}
                                 helperText={errorMessage}
@@ -87,7 +88,7 @@ export default function ResetPassword(props) {
                     <div style={{ marginBottom: 20 }}>
                         <FormControl variant="outlined" fullWidth>
                             <TextField label="Re-Enter New Password" variant="standard"
-                                type={values.showPassword ? 'text' : 'password'}
+                                type={values.showConfirmPassword ? 'text' : 'password'}
                                 onChange={handleChange('confirmPassword')}
                                 error={errorMessage != ""}
                                 helperText={errorMessage}
