@@ -1,0 +1,16 @@
+export const BASE_URI ='http://localhost:8081';
+export const REGISTER = '/api/v1.0/user/register';
+export const FORGOT_PASSWORD = '/api/v1.0/user/forgotpassword'
+export const AUTHENTICATE = '/authenticate'; 
+export const RESET_PASSWORD = '/api/v1.0/user/resetpassword';
+export const ALL_USERS = '/api/v1.0/user/all'; 
+export const GET_USER = '/api/v1.0/user/search';
+export const GET_LOGGED_IN_USER = '/api/v1.0/user/getallloggedinusers';
+export const POST_TWEET = '/api/v1.0/tweets/add';
+export const ALL_TWEETS = '/api/v1.0/tweets/all'; 
+export const SEARCH_TWEETS = '/api/v1.0/tweets'; 
+export const UPDATE_TWEET = '/api/v1.0/tweets/update'; 
+export const LIKE_TWEETS = '/api/v1.0/tweets/like'; 
+export const REPLY_TWEET = '/api/v1.0/tweets/reply'; 
+export const DELETE_TWEET = '/api/v1.0/tweets/delete'; 
+export const LOGOUT = '/api/v1.0/user/logout'
