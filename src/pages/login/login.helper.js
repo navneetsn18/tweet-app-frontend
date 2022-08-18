@@ -8,11 +8,6 @@ export const authenticate = async (email, password) => {
         let headers = {
             "Authorization": credentials
         }
-        // let response = {
-        //     data:{
-        //         token: "qwertyuknbvyhn b"
-        //     }
-        // }
         let response = await HttpGet(apiUrl, {}, headers)
         return response.data.token;
     } catch (e) {

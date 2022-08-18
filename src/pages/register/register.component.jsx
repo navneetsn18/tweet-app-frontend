@@ -62,7 +62,7 @@ export default function Register(props) {
         setValues({ ...values, showPassword: !values.showPassword });
     };
     const handleClickShowConfirmPassword = () => {
-        setValues({ ...values, showPassword: !values.showConfirmPassword });
+        setValues({ ...values, showConfirmPassword: !values.showConfirmPassword });
     };
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
@@ -146,7 +146,7 @@ export default function Register(props) {
                         <FormControl variant="outlined" style={{ paddingLeft: 10, width: 250, marginRight: 20 }}>
                             {/* <InputLabel htmlFor="outlined-adornment-amount">Confirm Password</InputLabel> */}
                             <TextField label="Confirm Password"
-                                type={values.showPassword ? 'text' : 'password'}
+                                type={values.showConfirmPassword ? 'text' : 'password'}
                                 onChange={handleChange('confirmPassword')}
                                 InputProps={{
                                     endAdornment:
@@ -157,7 +157,7 @@ export default function Register(props) {
                                                     onClick={handleClickShowConfirmPassword}
                                                     onMouseDown={handleMouseDownPassword}
                                                 >
-                                                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                                    {values.showConfirmPassword ? <Visibility /> : <VisibilityOff />}
                                                 </IconButton>
                                             </InputAdornment>
                                         </>
