@@ -1,4 +1,4 @@
-import { HttpGet, HttpPost } from "../../services/api-services";
+import { HttpGet, HttpPost , HttpPut} from "../../services/api-services";
 import { BASE_URI, ALL_TWEETS, GET_USER, POST_TWEET,REPLY_TWEET ,LIKE_TWEETS} from "../../constants/endpoints";
 
 export const fetchLoggedInUserDetails = async () => {
@@ -67,14 +67,14 @@ export const postReplyTweet = async (id,reply) => {
     }
 }
 
-export const likeTweet = async (id, data) => {
+export const likeTweet = async (id) => {
     try {
         let credentials = "Bearer " + localStorage.getItem("token");
         let headers = {
             "Authorization": credentials
         }
         let apiUrl = BASE_URI + LIKE_TWEETS + "/" + localStorage.getItem("username") + "/" + id;
-        await HttpPost(apiUrl, data, headers)
+        await HttpPut(apiUrl, {}, headers)
     } catch (e) {
         throw e;
     }

@@ -51,20 +51,11 @@ export default function Home(props) {
                     units = diffDays > 1 ? "days" : "day"
                 }
             }
-            let username = tweet.username;
             let tweetId = tweet.id
             const onLikeClick = () => {
                 try {
                     let tweets = [...allTweets]
-                    tweets[index].likes = tweets[index].isLiked ? parseInt(tweets[index].likes.length) - 1 : parseInt(tweets[index].likes.length) + 1;
-                    if (!tweets[index].isLiked) {
-                        likeTweet({
-                            tweet: {
-                                tweetId: tweetId
-                            }
-                        })
-                    }
-                    allTweets[index].likes.length = !allTweets[index].likes.length;
+                    likeTweet(tweetId);
                     setAllTweets(tweets);
                 } catch (e) {
                     console.log(e)
@@ -84,15 +75,7 @@ export default function Home(props) {
             const onReplyTweet = async () => {
                 try {
                     props.showLoader("Posting Reply Tweet")
-                    await postReplyTweet({
-                        "id": tweetId,
-                        "reply": [
-                          {
-                            "reply": replyMessage,
-                            "username": localStorage.getItem("username")
-                          }
-                        ]
-                      });
+                    await postReplyTweet(tweetId,replyMessage);
                     let allTweets = await fetchAllTweets();
                     setAllTweets(allTweets);
                     props.hideLoader();
@@ -111,7 +94,7 @@ export default function Home(props) {
 
                     </div>
                     <div style={{ display: "inline-flex", marginLeft: 20 }}>
-                        <img className={"ml-2"} src={tweet.isLiked ? imgLikeBlue : imgLikeWhite} height={30} width={30} onClick={onLikeClick} />
+                        <img className={"ml-2"} src={tweet.likes.indexOf(localStorage.getItem("username"))>-1 ? imgLikeBlue : imgLikeWhite} height={30} width={30} onClick={onLikeClick} />
                         <p className={"ml-2 mt-1"}>{tweet.likes.length}</p>
                         <img className={"ml-4"} src={imgReply} height={30} width={30} onClick={onReplyClick} />
                         <p className={"ml-2 mt-1"}>{tweet.reply.length}</p>
@@ -139,10 +122,10 @@ export default function Home(props) {
                                             }
                                             return (
                                                 <div style={{ alignItems: "flex-start", display: "inline-flex", width: "100%", padding: 10, borderRadius: 10, borderWidth: 1, marginLeft: 30 }}>
-                                                    <img src={"https://robohash.org/" + tweet.username} className="rounded-circle" height={30} width={30} style={{ marginRight: 20 }} />
+                                                    <img src={"https://robohash.org/" + reply.username} className="rounded-circle" height={30} width={30} style={{ marginRight: 20 }} />
                                                     <div style={{ width: "100%", justifyContent: "flex-start", display: "inline-flex", flexDirection: "column", alignItems: "flex-start" }}>
-                                                        <p style={{ fontFamily: "Barlow-SemiBold", fontSize: 16, margin: 0 }}>{reply.userId} <span style={{ color: "GrayText", fontFamily: "OpenSans-Regular", fontSize: 12 }}>{replydiffDays} {units} ago</span></p>
-                                                        <p style={{ borderWidth: 0, }}>{reply.replied}</p>
+                                                        <p style={{ fontFamily: "Barlow-SemiBold", fontSize: 16, margin: 0 }}>{reply.username} <span style={{ color: "GrayText", fontFamily: "OpenSans-Regular", fontSize: 12 }}>{replydiffDays} {units} ago</span></p>
+                                                        <p style={{ borderWidth: 0, }}>{reply.reply}</p>
                                                     </div>
 
                                                 </div>

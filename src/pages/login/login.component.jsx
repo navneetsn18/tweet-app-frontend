@@ -39,10 +39,10 @@ export default function Login(props) {
     const onLoginClick = async () => {
         try {
             props.showLoader("Logging in")
-            let token = await authenticate(values.emailId, values.password);
+            let data = await authenticate(values.emailId, values.password);
             await localStorage.setItem("isAuthenticated", true);
-            await localStorage.setItem("token", token);
-            await localStorage.setItem("username", values.emailId);
+            await localStorage.setItem("token", data.token);
+            await localStorage.setItem("username", data.user);
             props.updateSelectedPage(pages.HOME)
             props.hideLoader();
         } catch (e) {

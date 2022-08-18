@@ -34,6 +34,21 @@ export const HttpPost = async (endPoint, body = {}, headers = {}) => {
   }
 };
 
+export const HttpPut = async (endPoint, body = {}, headers = {}) => {
+  try {
+    if (typeof endPoint == 'string') {
+      let result = await api.put(endPoint, body, {
+        headers: headers
+      });
+      return result;
+    }
+    throw new Error('Incorrect request');
+  } catch (error) {
+    console.log('error', error);
+    throw error;
+  }
+};
+
 export const HttpDelete = async (endPoint, body = {}, headers = {}) => {
   try {
     if (typeof endPoint == 'string') {

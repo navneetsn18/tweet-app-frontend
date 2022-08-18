@@ -34,6 +34,10 @@ export default function MyTweets(props) {
                                 <p style={{ fontFamily: "Barlow-SemiBold", fontSize: 16, margin: 0 }}>{tweet.firstName} {tweet.lastName} <span style={{ color: "GrayText", fontFamily: "OpenSans-Regular", fontSize: 12 }}>@{tweet.username}</span></p>
                             </div>
                             <div style={{ flexDirection: "row", display: "inline-flex", alignItems: "center", marginTop: 10 }}>
+                                <div className={tweet.loggedin ? "ActiveImg" : "InactiveImg"} height={20} width={20} style={{ marginRight: 5 }} />
+                                <p className={tweet.loggedin ? "Active" : "Inactive"} style={{ marginRight: 10, marginBottom: 0 }}>{tweet.loggedin ? "Active" : "Inactive"} </p>
+                            </div>
+                            <div style={{ flexDirection: "row", display: "inline-flex", alignItems: "center", marginTop: 10 }}>
                                 <img src={imgEmail} height={20} width={20} style={{ marginRight: 5 }} />
                                 <p style={{ marginRight: 10, marginBottom: 0 }}>{tweet.email} </p>
                             </div>

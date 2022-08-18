@@ -1,0 +1,23 @@
+.Active{
+    color: #56f000;
+}
+
+.Inactive{
+    color: #ff3838;
+}
+
+.ActiveImg{
+    width: 10px;
+    height: 10px;
+    background: #56f000;
+    border-radius: 50%;
+    border: 0px;
+}
+
+.InactiveImg{
+    width: 10px;
+    height: 10px;
+    background: red;
+    border-radius: 50%;
+    border: 0px;
+}

@@ -9,7 +9,7 @@ export const authenticate = async (email, password) => {
             "Authorization": credentials
         }
         let response = await HttpGet(apiUrl, {}, headers)
-        return response.data.token;
+        return response.data;
     } catch (e) {
         throw e;
     }

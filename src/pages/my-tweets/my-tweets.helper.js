@@ -1,29 +1,28 @@
-import { HttpGet, HttpPost, HttpDelete } from "../../services/api-services";
-import { BASE_URI, LIKE_TWEETS,GET_USER ,DELETE_TWEET, UPDATE_TWEET} from "../../constants/endpoints";
+import { HttpGet, HttpPost, HttpDelete , HttpPut} from "../../services/api-services";
+import { BASE_URI, LIKE_TWEETS, SEARCH_TWEETS ,DELETE_TWEET, UPDATE_TWEET} from "../../constants/endpoints";
 
-export const likeTweet = async (data) => {
+export const likeTweet = async (id) => {
     try {
         let credentials = "Bearer " + localStorage.getItem("token");
         let headers = {
             "Authorization": credentials
         }
-        let apiUrl = BASE_URI + LIKE_TWEETS + "/" + localStorage.getItem("username") + "/";
-        await HttpPost(apiUrl, data, headers)
+        let apiUrl = BASE_URI + LIKE_TWEETS + "/" + localStorage.getItem("username") + "/" + id;
+        await HttpPut(apiUrl, {}, headers)
     } catch (e) {
         throw e;
     }
-
 }
 
-export const fetchMyTweets = async (username) => {
+export const fetchMyTweets = async () => {
     try {
         let credentials = "Bearer " + localStorage.getItem("token");
-        let apiUrl = BASE_URI + GET_USER + "/" + username;
+        let apiUrl = BASE_URI + SEARCH_TWEETS + "/" + localStorage.getItem("username");
         let headers = {
             "Authorization": credentials
         }
         let response = await HttpGet(apiUrl, {}, headers)
-        return response.data.tweetDtos[0];
+        return response.data.tweetDtos;
     } catch (e) {
         throw e;
     }
@@ -32,12 +31,11 @@ export const fetchMyTweets = async (username) => {
 export const deleteTweet = async (username, tweetId) => {
     try {
         let credentials = "Bearer " + localStorage.getItem("token");
-        let apiUrl = BASE_URI + DELETE_TWEET + "/" + username + tweetId;
+        let apiUrl = BASE_URI + DELETE_TWEET + "/" + username + "/" + tweetId;
         let headers = {
             "Authorization": credentials
         }
        await HttpDelete(apiUrl, {}, headers)
-        
     } catch (e) {
         throw e;
     }
@@ -50,7 +48,7 @@ export const updateTweet = async (data) => {
         let headers = {
             "Authorization": credentials
         }
-       await HttpPost(apiUrl, data, headers)
+       await HttpPut(apiUrl, data, headers)
         
     } catch (e) {
         throw e;
