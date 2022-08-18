@@ -1,6 +1,6 @@
-# Tweet App Backend
+# Tweet App Frontend
 
-This is a spring boot project. 
+This is a react project. 
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
