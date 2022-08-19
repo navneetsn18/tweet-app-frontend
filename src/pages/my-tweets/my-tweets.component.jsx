@@ -46,6 +46,11 @@ export default function MyTweets(props) {
                 try {
                     let tweets = [...allTweets]
                     likeTweet(tweetId);
+                    if(tweets[index].likes.indexOf(localStorage.getItem("username"))>-1){
+                        tweets[index].likes = tweets[index].likes.filter(username => username!=localStorage.getItem("username"))
+                    }else{
+                        tweets[index].likes.push(localStorage.getItem("username"));
+                    }
                     setAllTweets(tweets);
                 } catch (e) {
                     console.log(e)
