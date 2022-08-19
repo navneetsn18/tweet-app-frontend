@@ -3,7 +3,7 @@ import './custom-nav-bar.styles.css';
 import imgTweetLogo from '../../assets/images/logo-white.png';
 import { pages } from '../../constants/strings';
 import 'bootstrap/dist/js/bootstrap.bundle'
-import { fetchLoggedInUserDetails, logout, resetPassword } from './custom-nav-bar.helper';
+import { fetchLoggedInUserDetails, logout } from './custom-nav-bar.helper';
 
 export default function CustomNavBar(props) {
   const onResetPasswordClick = () => {

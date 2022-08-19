@@ -1,10 +1,6 @@
 
 import React from 'react';
 import "./forgot-password.styles.css";
-import IconButton from '@material-ui/core/IconButton';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import imgLogo from "../../assets/images/logo.png";
 import { pages } from '../../constants/strings';

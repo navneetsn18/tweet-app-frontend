@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import "./all-users.styles.css";
 import imgEmail from '../../assets/images/email.png';
 import { fetchAllUsers } from './all-users.helper';
@@ -9,9 +9,6 @@ export default function MyTweets(props) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.global.selectedPage]);
     const [allUsers, setAllUsers] = React.useState([])
-    const onTweetClick = () => {
-
-    }
     const initialise = async () => {
         try {
             props.showLoader("Fetching All Users")

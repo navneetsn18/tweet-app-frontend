@@ -1,5 +1,5 @@
 import { HttpGet } from "../../services/api-services";
-import { BASE_URI, GET_USER, LOGOUT, RESET_PASSWORD } from "../../constants/endpoints";
+import { BASE_URI, GET_USER, LOGOUT } from "../../constants/endpoints";
 
 export const fetchLoggedInUserDetails = async () => {
   try {

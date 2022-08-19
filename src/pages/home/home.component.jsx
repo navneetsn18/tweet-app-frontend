@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import "./home.styles.css";
 import imgLikeWhite from '../../assets/images/like-white.png';
 import imgLikeBlue from '../../assets/images/like-blue.png';
