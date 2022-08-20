@@ -87,6 +87,7 @@ export default function ResetPassword(props) {
                                                     aria-label="toggle password visibility"
                                                     onClick={handleClickShowPassword}
                                                     onMouseDown={handleMouseDownPassword}
+                                                    style={{color:"#7858A6"}}
                                                 >
                                                     {values.showPassword ? <Visibility /> : <VisibilityOff />}
                                                 </IconButton>
@@ -110,6 +111,7 @@ export default function ResetPassword(props) {
                                                     aria-label="toggle password visibility"
                                                     onClick={handleClickShowConfirmPassword}
                                                     onMouseDown={handleMouseDownConfirmPassword}
+                                                    style={{color:"#7858A6"}}
                                                 >
                                                     {values.showConfirmPassword ? <Visibility /> : <VisibilityOff />}
                                                 </IconButton>
