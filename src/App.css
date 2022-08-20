@@ -1,10 +1,11 @@
 .App {
   text-align: center;
+  height: 100%;
   background-color: #301B3F;
-  background-size: cover;
 }
 
 #root{
   height: 100%;
+  background-color: #301B3F;
 }
 
