@@ -121,12 +121,12 @@ export default function MyTweets(props) {
                 setAllTweets(tweets)
             }
             return (
-                <div className="shadow" style={{ width: "60%", marginLeft: "auto", marginRight: "auto", alignItems: "flex-start", display: "flex", flexDirection: "column", borderRadius: 10, marginBottom: 10 }}>
+                <div className="shadow" style={{ width: "60%", marginLeft: "auto", marginRight: "auto", alignItems: "flex-start", display: "flex", flexDirection: "column", borderRadius: 10, marginBottom: 10 ,backgroundColor: "#3E065F"}}>
                     <div style={{ alignItems: "flex-start", display: "inline-flex", width: "100%", padding: 20, borderRadius: 10, borderWidth: 1 }}>
                         <img src={"https://robohash.org/" + tweet.username} className="rounded-circle" height={40} width={40} style={{ marginRight: 20 }} />
                         <div style={{ width: "100%", justifyContent: "flex-start", display: "inline-flex", flexDirection: "column", alignItems: "flex-start" }}>
                             <div style={{ display: "inline-flex", justifyContent: "space-between", width: "100%" }}>
-                                <p style={{ fontFamily: "Barlow-SemiBold", fontSize: 16, margin: 0 }}>{tweet.username} <span style={{ color: "GrayText", fontFamily: "OpenSans-Regular", fontSize: 12 }}>{diffDays} {units} ago</span></p>
+                                <p style={{ fontFamily: "Barlow-SemiBold", fontSize: 16, margin: 0 , color: "white"}}>{tweet.username} <span style={{  color: "#ECB365", fontFamily: "OpenSans-Regular", fontSize: 12 }}>{diffDays} {units} ago</span></p>
                                 <div style={{ marginBottom: 10 }}>
                                     <img className={"ml-4"} src={imgEdit} height={20} width={20} onClick={onEditClick} />
                                     <img className={"ml-4"} src={imgTrash} height={20} width={20} onClick={onDeleteClick} />
@@ -139,16 +139,16 @@ export default function MyTweets(props) {
                                         <textarea placeholder={"Edit Tweet"} value={tweet.tweet} multiple={4} style={{ width: "80%", borderWidth: 0, resize: "none", padding: 10, marginRight: 20 }} maxLength={144} onChange={onEditChange} />
                                         <button style={{ borderWidth: 0, backgroundColor: "#1DA1F2", color: "white", width: 100, padding: 5, borderRadius: 20, marginRight: 30 }} onClick={onUpdateTweet}>Save</button>
                                     </div> :
-                                    <p style={{ borderWidth: 0, fontFamily: "OpenSans-Regular", fontSize: 16, textAlign: "justify" }}>{tweet.tweet}</p>
+                                    <p style={{ borderWidth: 0, fontFamily: "OpenSans-Regular", fontSize: 16, textAlign: "justify" ,color: "white"}}>{tweet.tweet}</p>
                             }
                         </div>
 
                     </div>
                     <div style={{ display: "inline-flex", marginLeft: 20 }}>
                         <img className={"ml-2"} src={tweet.likes.indexOf(localStorage.getItem("username"))>-1 ? imgLikeBlue : imgLikeWhite} height={30} width={30} onClick={onLikeClick} />
-                        <p className={"ml-2 mt-1"}>{tweet.likes.length}</p>
+                        <p className={"ml-2 mt-1"} style={{color:"white"}}>{tweet.likes.length}</p>
                         <img className={"ml-4"} src={imgReply} height={30} width={30} onClick={onReplyClick} />
-                        <p className={"ml-2 mt-1"}>{tweet.reply.length}</p>
+                        <p className={"ml-2 mt-1"} style={{color:"white"}}>{tweet.reply.length}</p>
                     </div>
                     <div style={{ width: "100%" }}>
                         {
@@ -174,8 +174,8 @@ export default function MyTweets(props) {
                                                 <div style={{ alignItems: "flex-start", display: "inline-flex", width: "100%", padding: 10, borderRadius: 10, borderWidth: 1, marginLeft: 30 }}>
                                                     <img src={"https://robohash.org/" + tweet.username} className="rounded-circle" height={30} width={30} style={{ marginRight: 20 }} />
                                                     <div style={{ width: "100%", justifyContent: "flex-start", display: "inline-flex", flexDirection: "column", alignItems: "flex-start" }}>
-                                                        <p style={{ fontFamily: "Barlow-SemiBold", fontSize: 16, margin: 0 }}>{reply.username} <span style={{ color: "GrayText", fontFamily: "OpenSans-Regular", fontSize: 12 }}>{replydiffDays} {units} ago</span></p>
-                                                        <p style={{ borderWidth: 0, }}>{reply.reply}</p>
+                                                        <p style={{ fontFamily: "Barlow-SemiBold", fontSize: 16, margin: 0 , color: "white"}}>{reply.username} <span style={{ color: "#E0C097", fontFamily: "OpenSans-Regular", fontSize: 12 }}>{replydiffDays} {units} ago</span></p>
+                                                        <p style={{ borderWidth: 0, color : "#E7F6F2"}}>{reply.reply}</p>
                                                     </div>
 
                                                 </div>
@@ -183,10 +183,10 @@ export default function MyTweets(props) {
                                         })}
                                 </div>
                                 <div className="shadow" style={{ alignItems: "flex-start", display: "flex", flexDirection: "column", borderRadius: 10, margin: 30, marginTop: 0, }}>
-                                    <p style={{ marginLeft: 20, marginTop: 20, fontSize: 12, fontFamily: "OpenSans-Regular" }}>You are replying to <span style={{ color: "#1DA1F2" }}>{tweet.username}</span> </p>
+                                    <p style={{ marginLeft: 20, marginTop: 20, fontSize: 12, fontFamily: "OpenSans-Regular" ,color: "#E0C097"}}>You are replying to <span style={{ color: "#1DA1F2" }}>{tweet.username}</span> </p>
                                     <div style={{ alignItems: "flex-start", display: "inline-flex", width: "100%", borderRadius: 10, borderWidth: 1, marginLeft: 30 }}>
                                         <img src={"https://robohash.org/" + tweet.username} className="rounded-circle" height={30} width={30} style={{ marginRight: 20 }} />
-                                        <textarea placeholder={"Tweet your reply"} multiple={4} style={{ width: "80%", height: 50, borderWidth: 0, resize: "none", padding: 10, fontSize: 16 }} maxLength={144} onChange={onChangeText} />
+                                        <textarea placeholder={"Give A Reply"} multiple={4} style={{ width: "80%", height: 50, borderWidth: 0, resize: "none", padding: 10, fontSize: 16 , backgroundColor : "#3E065F", color : "white"}} maxLength={144} onChange={onChangeText} />
                                     </div>
                                     <div style={{ display: "inline-flex", alignItems: "flex-end", justifyContent: "flex-end", width: "100%" }}>
                                         <button style={{ borderWidth: 0, marginTop: 10, backgroundColor: "#1DA1F2", color: "white", width: 100, padding: 10, borderRadius: 20, marginBottom: 20, marginRight: 30 }} onClick={onReplyTweet}>Tweet</button>

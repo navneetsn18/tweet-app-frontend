@@ -9,6 +9,14 @@ import imgLogo from "../../assets/images/logo.png";
 import { pages } from '../../constants/strings';
 import TextField from '@material-ui/core/TextField';
 import { authenticate } from './login.helper';
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+    input: {
+      color: "white"
+    }
+});
+
 
 export default function Login(props) {
     const [values, setValues] = React.useState({
@@ -16,6 +24,8 @@ export default function Login(props) {
         password: '',
         showPassword: false,
     });
+
+    const classes = useStyles();
     const [errorMessage, setErrorMessage] = React.useState("");
     const handleChange = (prop) => (event) => {
         setErrorMessage("")
@@ -57,13 +67,13 @@ export default function Login(props) {
                         <img src={imgLogo} height={200} width={200} />
                     </div>
                     <div>
-                        <h2 style={{ fontFamily: "Barlow-Bold", marginBottom: 20 }}>Log in to Tweet App</h2>
+                        <h2 style={{ fontFamily: "Barlow-Bold", marginBottom: 20 , color: "#719FB0"}}>Log in to Tweet App</h2>
                     </div>
                     <div style={{ marginBottom: 20 }}>
                         <FormControl variant="outlined" fullWidth className="formControl">
                             <TextField label="Username Or Email" variant="outlined"
                                 onChange={handleChange('emailId')}
-                                error={errorMessage != ""} />
+                                error={errorMessage != ""} InputLabelProps={{className:"textfield__label"}} inputProps={{ className: classes.input }}/>
                         </FormControl>
                     </div>
                     <div style={{ marginBottom: 20 }}>
@@ -86,7 +96,7 @@ export default function Login(props) {
                                                 </IconButton>
                                             </InputAdornment>
                                         </>
-                                }} />
+                                }} InputLabelProps={{className:"textfield__label"}} inputProps={{ className: classes.input }}/>
                         </FormControl>
                     </div>
                     <div>

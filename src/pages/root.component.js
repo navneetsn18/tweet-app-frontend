@@ -30,7 +30,7 @@ export default function Root(props) {
   return (
     <div
       className={'w-100'}
-      style={{ transition: '0.5s',marginTop: 60  }}>
+      style={{ transition: '0.5s',marginTop: 51 }}>
       <div className={'container-fluid p-0 mx-0 h-100 w-100'}>
         <div className={'row h-100 mx-0'}>
           <div className={'col-12 h-100 p-0'}>

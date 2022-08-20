@@ -14,6 +14,13 @@ import TextField from '@material-ui/core/TextField';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { register } from './register.helper';
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+    input: {
+      color: "white"
+    }
+  });
 
 export default function Register(props) {
     const [values, setValues] = React.useState({
@@ -39,7 +46,7 @@ export default function Register(props) {
         })
         setValues({ ...values, [prop]: event.target.value });
     };
-
+    const classes = useStyles();
     const validateInputs = () => {
         let allValid = true;
         let confirmPassword = "";
@@ -90,20 +97,18 @@ export default function Register(props) {
                         <img src={imgLogo} height={50} width={50} />
                     </div>
                     <div style={{ display: "flex", alignItems: "center", marginLeft: 10 }}>
-                        <h2 style={{ fontFamily: "Barlow-Bold", marginBottom: 30 }}>Register</h2>
+                        <h2 style={{ fontFamily: "Barlow-Bold", marginBottom: 30 , color: "white"}}>Register</h2>
                     </div>
                     <div style={{ marginBottom: 20, display: "flex", flexWrap: "wrap" }}>
                         <FormControl variant="outlined" style={{ paddingLeft: 10, width: 250, marginBottom: 20, marginRight: 20 }}>
-                            <InputLabel htmlFor="standard-adornment-email">First Name</InputLabel>
-                            <Input label="Email ID"
+                            <TextField label="First Name"
                                 id="standard-adornment-email"
-                                onChange={handleChange('firstName')} />
+                                onChange={handleChange('firstName')} inputProps={{ className: classes.input }} InputLabelProps={{className:"textfield__label"}}/>
                         </FormControl>
                         <FormControl variant="outlined" style={{ paddingLeft: 10, width: 250, marginBottom: 20, marginRight: 20 }}>
-                            <InputLabel htmlFor="standard-adornment-email">Last Name</InputLabel>
-                            <Input label="Email ID"
+                            <TextField label="Last Name"
                                 id="standard-adornment-email"
-                                onChange={handleChange('lastName')} />
+                                onChange={handleChange('lastName')} inputProps={{ className: classes.input }} InputLabelProps={{className:"textfield__label"}}/>
                         </FormControl>
                         <FormControl variant="outlined" style={{ paddingLeft: 10, width: 250, marginBottom: 20, marginRight: 20 }}>
                             <TextField label="Email ID"
@@ -112,6 +117,8 @@ export default function Register(props) {
                                 error={errorValues.emailId != ""}
                                 helperText={errorValues.emailId}
                                 color={errorValues.emailId == "" ? "primary" : "secondary"}
+                                inputProps={{ className: classes.input }}
+                                InputLabelProps={{className:"textfield__label"}}
                             />
                         </FormControl>
                         <FormControl variant="outlined" style={{ paddingLeft: 10, width: 250, marginBottom: 20, marginRight: 20 }}>
@@ -120,7 +127,10 @@ export default function Register(props) {
                                 onChange={handleChange('username')}
                                 error={errorValues.username != ""}
                                 helperText={errorValues.username}
-                                color={errorValues.username == "" ? "primary" : "secondary"} />
+                                color={errorValues.username == "" ? "primary" : "secondary"}
+                                inputProps={{ className: classes.input }} 
+                                InputLabelProps={{className:"textfield__label"}}
+                            />
                         </FormControl>
                         <FormControl variant="outlined" style={{ paddingLeft: 10, width: 250, marginBottom: 20, marginRight: 20 }}>
                             {/* <InputLabel htmlFor="outlined-adornment-amount">Password</InputLabel> */}
@@ -128,6 +138,7 @@ export default function Register(props) {
                                 type={values.showPassword ? 'text' : 'password'}
                                 onChange={handleChange('password')}
                                 InputProps={{
+                                    className: classes.input,
                                     endAdornment:
                                         <>
                                             <InputAdornment position="end" >
@@ -141,6 +152,7 @@ export default function Register(props) {
                                             </InputAdornment>
                                         </>
                                 }}
+                                InputLabelProps={{className:"textfield__label"}}
                             />
                         </FormControl>
                         <FormControl variant="outlined" style={{ paddingLeft: 10, width: 250, marginRight: 20 }}>
@@ -149,6 +161,7 @@ export default function Register(props) {
                                 type={values.showConfirmPassword ? 'text' : 'password'}
                                 onChange={handleChange('confirmPassword')}
                                 InputProps={{
+                                    className: classes.input,
                                     endAdornment:
                                         <>
                                             <InputAdornment position="end" >
@@ -162,6 +175,7 @@ export default function Register(props) {
                                             </InputAdornment>
                                         </>
                                 }}
+                                InputLabelProps={{className:"textfield__label"}}
                                 color={errorValues.confirmPassword == "" ? "primary" : "secondary"}
                                 error={errorValues.confirmPassword != ""}
                                 helperText={errorValues.confirmPassword} />

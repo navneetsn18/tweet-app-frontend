@@ -8,12 +8,22 @@ import { forgotPassword } from './forgot-password.helper';
 import TextField from '@material-ui/core/TextField';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+    input: {
+      color: "white"
+    }
+  });
 
 export default function ForgotPassword(props) {
     const [errorMessage, setErrorMessage] = React.useState("");
     const [values, setValues] = React.useState({
         username: ''
     });
+
+    const classes = useStyles();
+
     const handleChange = (prop) => (event) => {
         setErrorMessage("")
         setValues({ ...values, [prop]: event.target.value });
@@ -40,13 +50,13 @@ export default function ForgotPassword(props) {
                         <img src={imgLogo} height={50} width={50} />
                     </div>
                     <div style={{ display: "flex", alignItems: "center", marginLeft: 10 }}>
-                        <h2 style={{ fontFamily: "Barlow-Bold", marginBottom: 30 }}>Forgot Password</h2>
+                        <h2 style={{ fontFamily: "Barlow-Bold", marginBottom: 30 , color: "white"}}>Forgot Password</h2>
                     </div>
                     <div style={{ marginBottom: 20 }}>
                         <FormControl variant="outlined" fullWidth className="formControl">
                             <TextField label="Enter Username or Email" variant="standard"
                                 onChange={handleChange('username')}
-                                error={errorMessage != ""} />
+                                error={errorMessage != ""} InputLabelProps={{className:"textfield__label"}} inputProps={{ className: classes.input }}/>
                         </FormControl>
                     </div>
                     <div>
