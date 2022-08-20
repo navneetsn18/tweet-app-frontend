@@ -136,7 +136,7 @@ export default function MyTweets(props) {
                             {
                                 tweet.isEditing ?
                                     <div style={{ width: "100%", display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
-                                        <textarea placeholder={"Edit Tweet"} value={tweet.tweet} multiple={4} style={{ width: "80%", borderWidth: 0, resize: "none", padding: 10, marginRight: 20 }} maxLength={144} onChange={onEditChange} />
+                                        <textarea placeholder={"Edit Tweet"} value={tweet.tweet} multiple={4} style={{ width: "80%", borderWidth: 0, resize: "none", padding: 10, marginRight: 20 , backgroundColor : "#700B97", color : "white"}} maxLength={144} onChange={onEditChange} />
                                         <button style={{ borderWidth: 0, backgroundColor: "#1DA1F2", color: "white", width: 100, padding: 5, borderRadius: 20, marginRight: 30 }} onClick={onUpdateTweet}>Save</button>
                                     </div> :
                                     <p style={{ borderWidth: 0, fontFamily: "OpenSans-Regular", fontSize: 16, textAlign: "justify" ,color: "white"}}>{tweet.tweet}</p>
