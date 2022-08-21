@@ -1,6 +1,6 @@
 import React from 'react';
 import './custom-nav-bar.styles.css';
-import imgTweetLogo from '../../assets/images/logo-white.png';
+import imgTweetLogo from '../../assets/images/logo-big.png';
 import { pages } from '../../constants/strings';
 import 'bootstrap/dist/js/bootstrap.bundle'
 import { fetchLoggedInUserDetails, logout } from './custom-nav-bar.helper';

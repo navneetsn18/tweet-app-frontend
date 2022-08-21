@@ -1,7 +1,8 @@
 import React from 'react';
+import Picker from 'emoji-picker-react';
 import "./home.styles.css";
 import imgLikeWhite from '../../assets/images/like-white.png';
-import imgLikeBlue from '../../assets/images/like-blue.png';
+import imgLike from '../../assets/images/like.png';
 import imgReply from '../../assets/images/reply.png';
 import { fetchAllTweets, postTweet, postReplyTweet, likeTweet } from './home.helper';
 
@@ -12,11 +13,21 @@ export default function Home(props) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.global.selectedPage]);
     const [tweetMessage, setTweetMessage] = React.useState("")
+    const [replyMessage, setReplyMessage] = React.useState("")
+    const [showPicker, setShowPicker] = React.useState(false);
     const [allTweets, setAllTweets] = React.useState([])
+    const onEmojiClickTweet = (event, emojiObject) => {
+        setTweetMessage((prevInput) => prevInput + emojiObject.emoji);
+        setShowPicker(false);
+    };
+    const onEmojiClickReply = (event, emojiObject) => {
+        setReplyMessage((prevInput) => prevInput + emojiObject.emoji);
+        setShowPicker(false);
+    };
     const onTweetClick = async () => {
         try {
             props.showLoader("Posting Tweet")
-            await postTweet(tweetMessage,props.global.userData.username);
+            await postTweet(tweetMessage, props.global.userData.username);
             setTweetMessage("");
             let allTweets = await fetchAllTweets();
             setAllTweets(allTweets);
@@ -56,9 +67,9 @@ export default function Home(props) {
                 try {
                     let tweets = [...allTweets]
                     likeTweet(tweetId);
-                    if(tweets[index].likes.indexOf(localStorage.getItem("username"))>-1){
-                        tweets[index].likes = tweets[index].likes.filter(username => username!=localStorage.getItem("username"))
-                    }else{
+                    if (tweets[index].likes.indexOf(localStorage.getItem("username")) > -1) {
+                        tweets[index].likes = tweets[index].likes.filter(username => username != localStorage.getItem("username"))
+                    } else {
                         tweets[index].likes.push(localStorage.getItem("username"));
                     }
                     setAllTweets(tweets);
@@ -71,16 +82,13 @@ export default function Home(props) {
                 let tweets = [...allTweets]
                 tweets[index].showReplies = !tweets[index].showReplies;
                 setAllTweets(tweets);
-            }
-            let replyMessage = ""
-            const onChangeText = (e) => {
-                replyMessage = e.target.value
+                setReplyMessage("");
             }
 
             const onReplyTweet = async () => {
                 try {
                     props.showLoader("Posting Reply Tweet")
-                    await postReplyTweet(tweetId,replyMessage);
+                    await postReplyTweet(tweetId, replyMessage);
                     let allTweets = await fetchAllTweets();
                     setAllTweets(allTweets);
                     props.hideLoader();
@@ -89,20 +97,20 @@ export default function Home(props) {
                 }
             }
             return (
-                <div className="shadow" style={{ width: "60%", marginLeft: "auto", marginRight: "auto", alignItems: "flex-start", display: "flex", flexDirection: "column", borderRadius: 10, marginBottom: 10 ,backgroundColor: "#3E065F"}}>
+                <div className="shadow" style={{ width: "60%", marginLeft: "auto", marginRight: "auto", alignItems: "flex-start", display: "flex", flexDirection: "column", borderRadius: 10, marginBottom: 10, backgroundColor: "#3E065F" }}>
                     <div style={{ alignItems: "flex-start", display: "inline-flex", width: "100%", padding: 20, borderRadius: 10, borderWidth: 1 }}>
                         <img src={"https://robohash.org/" + tweet.username} className="rounded-circle" height={40} width={40} style={{ marginRight: 20 }} />
                         <div style={{ width: "100%", justifyContent: "flex-start", display: "inline-flex", flexDirection: "column", alignItems: "flex-start" }}>
-                            <p style={{ fontFamily: "Barlow-SemiBold", fontSize: 16, margin: 0 , color: "White"}}>{tweet.username} <span style={{ color: "#ECB365", fontFamily: "OpenSans-Regular", fontSize: 12 }}>{diffDays} {units} ago</span></p>
-                            <p style={{ borderWidth: 0, fontFamily: "OpenSans-Regular", fontSize: 16, textAlign: "justify" ,color : "#E7F6F2"}}>{tweet.tweet}</p>
+                            <p style={{ fontFamily: "Barlow-SemiBold", fontSize: 16, margin: 0, color: "White" }}>{tweet.username} <span style={{ color: "#ECB365", fontFamily: "OpenSans-Regular", fontSize: 12 }}>{diffDays} {units} ago</span></p>
+                            <p style={{ borderWidth: 0, fontFamily: "OpenSans-Regular", fontSize: 16, textAlign: "justify", color: "#E7F6F2" }}>{tweet.tweet}</p>
                         </div>
 
                     </div>
                     <div style={{ display: "inline-flex", marginLeft: 20 }}>
-                        <img className={"ml-2"} src={tweet.likes.indexOf(localStorage.getItem("username"))>-1 ? imgLikeBlue : imgLikeWhite} height={30} width={30} onClick={onLikeClick} />
-                        <p className={"ml-2 mt-1"} style={{color:"white"}}>{tweet.likes.length}</p>
+                        <img className={"ml-2"} src={tweet.likes.indexOf(localStorage.getItem("username")) > -1 ? imgLike : imgLikeWhite} height={30} width={30} onClick={onLikeClick} />
+                        <p className={"ml-2 mt-1"} style={{ color: "white" }}>{tweet.likes.length}</p>
                         <img className={"ml-4"} src={imgReply} height={30} width={30} onClick={onReplyClick} />
-                        <p className={"ml-2 mt-1"} style={{color:"white"}}>{tweet.reply.length}</p>
+                        <p className={"ml-2 mt-1"} style={{ color: "white" }}>{tweet.reply.length}</p>
                     </div>
                     <div style={{ width: "100%" }}>
                         {
@@ -129,8 +137,8 @@ export default function Home(props) {
                                                 <div style={{ alignItems: "flex-start", display: "inline-flex", width: "100%", padding: 10, borderRadius: 10, borderWidth: 1, marginLeft: 30 }}>
                                                     <img src={"https://robohash.org/" + reply.username} className="rounded-circle" height={30} width={30} style={{ marginRight: 20 }} />
                                                     <div style={{ width: "100%", justifyContent: "flex-start", display: "inline-flex", flexDirection: "column", alignItems: "flex-start" }}>
-                                                        <p style={{ fontFamily: "Barlow-SemiBold", fontSize: 16, margin: 0 , color: "white"}}>{reply.username} <span style={{ color: "#E0C097", fontFamily: "OpenSans-Regular", fontSize: 12 }}>{replydiffDays} {units} ago</span></p>
-                                                        <p style={{ borderWidth: 0, color : "#E7F6F2"}}>{reply.reply}</p>
+                                                        <p style={{ fontFamily: "Barlow-SemiBold", fontSize: 16, margin: 0, color: "white" }}>{reply.username} <span style={{ color: "#E0C097", fontFamily: "OpenSans-Regular", fontSize: 12 }}>{replydiffDays} {units} ago</span></p>
+                                                        <p style={{ borderWidth: 0, color: "#E7F6F2" }}>{reply.reply}</p>
                                                     </div>
 
                                                 </div>
@@ -138,10 +146,21 @@ export default function Home(props) {
                                         })}
                                 </div>
                                 <div className="shadow" style={{ alignItems: "flex-start", display: "flex", flexDirection: "column", borderRadius: 10, margin: 30, marginTop: 0 }}>
-                                    <p style={{ marginLeft: 20, marginTop: 20, fontSize: 12, fontFamily: "OpenSans-Regular" , color: "#E0C097"}}>You are replying to <span style={{ color: "#1DA1F2" }}>{tweet.username}</span> </p>
+                                    <p style={{ marginLeft: 20, marginTop: 20, fontSize: 12, fontFamily: "OpenSans-Regular", color: "#E0C097" }}>You are replying to <span style={{ color: "#1DA1F2" }}>{tweet.username}</span> </p>
                                     <div style={{ alignItems: "flex-start", display: "inline-flex", width: "100%", borderRadius: 10, borderWidth: 1, marginLeft: 30 }}>
-                                        <img src={"https://robohash.org/"+tweet.username} className="rounded-circle" height={30} width={30} style={{ marginRight: 20 }} />
-                                        <textarea placeholder={"Give A Reply"} multiple={4} style={{ width: "80%", height: 50, borderWidth: 0, resize: "none", padding: 10, fontSize: 16 , backgroundColor: "#3E065F", color: "#EEEEEE"}} maxLength={144} onChange={onChangeText} />
+                                        <img src={"https://robohash.org/" + tweet.username} className="rounded-circle" height={30} width={30} style={{ marginRight: 20 }} />
+                                        <div className="picker-container">
+                                            <textarea placeholder={"Give A Reply"} multiple={4} style={{ width: "100%", height: 50, borderWidth: 0, resize: "none", padding: 10, fontSize: 16, backgroundColor: "#3E065F", color: "#EEEEEE" }} maxLength={144} value={replyMessage} onChange={(e) => setReplyMessage(e.target.value)} />
+                                            <img
+                                                className="emoji-icon"
+                                                alt="true"
+                                                src="https://img.icons8.com/emoji/36/FAB005/grinning-squinting-face--v2.png"
+                                                onClick={() => setShowPicker((val) => !val)}
+                                            />
+                                            {showPicker && (
+                                                <Picker pickerStyle={{ width: "100%" }} onEmojiClick={onEmojiClickReply} />
+                                            )}
+                                        </div>
                                     </div>
                                     <div style={{ display: "inline-flex", alignItems: "flex-end", justifyContent: "flex-end", width: "100%" }}>
                                         <button style={{ borderWidth: 0, marginTop: 10, backgroundColor: "#1DA1F2", color: "white", width: 100, padding: 10, borderRadius: 20, marginBottom: 20, marginRight: 30 }} onClick={onReplyTweet}>Reply</button>
@@ -159,10 +178,21 @@ export default function Home(props) {
     return (
         <>
             <div className={"h-100"}>
-                <div className="shadow" style={{ width: "60%", marginLeft: "auto", marginRight: "auto", alignItems: "flex-start", display: "inline-flex", flexDirection: "column", borderRadius: 10 , backgroundColor : "#700B97"}}>
+                <div className="shadow" style={{ width: "60%", marginLeft: "auto", marginRight: "auto", alignItems: "flex-start", display: "inline-flex", flexDirection: "column", borderRadius: 10, backgroundColor: "#700B97" }}>
                     <div style={{ alignItems: "flex-start", display: "inline-flex", width: "100%", padding: 20, borderRadius: 10, borderWidth: 1 }}>
-                        <img src={"https://robohash.org/"+localStorage.getItem("username")} className="rounded-circle" height={60} width={60} style={{ marginRight: 20 }} />
-                        <textarea placeholder={"What's happening ?"} multiple={4} style={{ width: "80%", height: 50, borderWidth: 0, resize: "none", padding: 10 , backgroundColor : "#700B97", color : "white"}} maxLength={144} value={tweetMessage} onChange={(e) => setTweetMessage(e.target.value)} />
+                        <img src={"https://robohash.org/" + localStorage.getItem("username")} className="rounded-circle" height={60} width={60} style={{ marginRight: 20 }} />
+                        <div className="picker-container">
+                            <textarea placeholder={"What's happening ?"} multiple={4} style={{ width: "100%", height: 50, borderWidth: 0, resize: "none", padding: 10, backgroundColor: "#700B97", color: "white" }} maxLength={144} value={tweetMessage} onChange={(e) => setTweetMessage(e.target.value)} />
+                            <img
+                                className="emoji-icon"
+                                alt="true"
+                                src="https://img.icons8.com/emoji/36/FAB005/grinning-squinting-face--v2.png"
+                                onClick={() => setShowPicker((val) => !val)}
+                            />
+                            {showPicker && (
+                                <Picker pickerStyle={{ width: "100%" }} onEmojiClick={onEmojiClickTweet} />
+                            )}
+                        </div>
                     </div>
                     <div style={{ display: "inline-flex", alignItems: "flex-end", justifyContent: "flex-end", width: "100%" }}>
                         <button style={{ borderWidth: 0, backgroundColor: "#1DA1F2", color: "white", width: 100, padding: 10, borderRadius: 20, marginBottom: 20, marginRight: 30 }} onClick={onTweetClick}>Tweet</button>
