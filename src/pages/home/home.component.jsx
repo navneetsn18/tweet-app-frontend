@@ -138,7 +138,7 @@ export default function Home(props) {
                                                     <img src={"https://robohash.org/" + reply.username} className="rounded-circle" height={30} width={30} style={{ marginRight: 20 }} />
                                                     <div style={{ width: "100%", justifyContent: "flex-start", display: "inline-flex", flexDirection: "column", alignItems: "flex-start" }}>
                                                         <p style={{ fontFamily: "Barlow-SemiBold", fontSize: 16, margin: 0, color: "white" }}>{reply.username} <span style={{ color: "#E0C097", fontFamily: "OpenSans-Regular", fontSize: 12 }}>{replydiffDays} {units} ago</span></p>
-                                                        <p style={{ borderWidth: 0, color: "#E7F6F2" }}>{reply.reply}</p>
+                                                        <p style={{ borderWidth: 0, color: "#E7F6F2" }}>{reply.replyMsg}</p>
                                                     </div>
 
                                                 </div>

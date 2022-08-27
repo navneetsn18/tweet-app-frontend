@@ -57,7 +57,7 @@ export const postReplyTweet = async (id,reply) => {
             "id": id,
             "reply": [
               {
-                "reply": reply,
+                "replyMsg": reply,
                 "username": localStorage.getItem("username")
               }
             ]

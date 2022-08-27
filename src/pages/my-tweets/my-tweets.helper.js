@@ -1,4 +1,4 @@
-import { HttpGet, HttpPost, HttpDelete , HttpPut} from "../../services/api-services";
+import { HttpGet, HttpDelete , HttpPut} from "../../services/api-services";
 import { BASE_URI, LIKE_TWEETS, SEARCH_TWEETS ,DELETE_TWEET, UPDATE_TWEET} from "../../constants/endpoints";
 
 export const likeTweet = async (id) => {
