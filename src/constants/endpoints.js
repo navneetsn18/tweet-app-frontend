@@ -1,4 +1,5 @@
-export const BASE_URI ='http://localhost:8081';
+export const BASE_URI ='http://'+window.location.hostname+':8081';
+// export const BASE_URI = 'https://cors-anywhere.herokuapp.com/http://'+window.location.hostname+':8081'
 export const REGISTER = '/api/v1.0/user/register';
 export const FORGOT_PASSWORD = '/api/v1.0/user/forgotpassword'
 export const AUTHENTICATE = '/authenticate'; 
@@ -13,4 +14,4 @@ export const UPDATE_TWEET = '/api/v1.0/tweets/update';
 export const LIKE_TWEETS = '/api/v1.0/tweets/like'; 
 export const REPLY_TWEET = '/api/v1.0/tweets/reply'; 
 export const DELETE_TWEET = '/api/v1.0/tweets/delete'; 
-export const LOGOUT = '/api/v1.0/user/logout'
+export const LOGOUT = '/api/v1.0/user/logout';
